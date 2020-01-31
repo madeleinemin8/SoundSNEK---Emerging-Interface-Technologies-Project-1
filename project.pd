@@ -1,50 +1,64 @@
-#N canvas 840 23 840 1005 12;
-#X obj 40 538 adc~;
-#X obj 334 276 tabwrite~ array1;
-#X obj 278 192 metro 100;
-#X obj 165 176 *~ 10;
-#X obj 273 148 bng 15 250 50 1 empty empty empty 17 7 0 10 -262144
+#N canvas 0 23 840 1005 12;
+#X obj 177 503 adc~;
+#X obj 322 272 tabwrite~ array1;
+#X obj 303 211 metro 100;
+#X obj 165 183 *~ 10;
+#X obj 299 174 bng 15 250 50 1 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 277 341 threshold~ 1 3000 0.1 1000;
+#X obj 288 327 threshold~ 1 3000 0.1 1000;
 #X obj 128 389 print;
 #X obj 79 272 threshold~ 3 3000 0.4 2000;
-#X obj 283 472 print;
+#X obj 290 419 print;
 #X obj 443 201 lop~;
-#X obj 480 267 threshold~ 1 3000 0.1 1000;
-#X msg 526 313 Low sound detected.;
-#X obj 557 358 print;
-#X msg 75 319 Loud sound detected.;
-#X msg 282 402 Moderate sound detected.;
-#X obj 398 142 *~ 10;
+#X obj 480 272 threshold~ 1 3000 0.1 1000;
+#X msg 492 319 Low sound detected.;
+#X obj 523 364 print;
+#X msg 79 316 Loud sound detected.;
+#X msg 288 371 Moderate sound detected.;
+#X obj 398 155 *~ 10;
 #X obj -35 106 sigmund~ .npeaks 16 peaks;
 #X obj -94 183 route 0;
 #X obj -95 243 unpack f f f f;
 #X floatatom -98 296 5 0 0 0 - - -;
-#X floatatom -54 295 5 0 0 0 - - -;
+#X floatatom -54 296 5 0 0 0 - - -;
 #X obj -8 155 send peaks;
 #X text -168 315 frequency Hz;
-#X text -63 315 amplitude;
-#X obj -83 414 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X text -54 338 amplitude;
+#X obj -95 413 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -95 369 threshold~ 20 3000 0.4 2000;
 #X obj 150 18 adc~;
-#X floatatom 40 643 5 0 0 0 - - -;
-#X floatatom 111 678 5 0 0 0 - - -;
+#X floatatom 59 747 5 0 0 0 - - -;
+#X floatatom 149 746 5 0 0 0 - - -;
 #X obj 172 64 *~;
-#X obj 245 23 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 245 18 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 40 608 fiddle~;
-#X obj 103 752 vsl 15 128 5 8 0 0 empty empty Pitch 0 -9 0 10 -262144
--1 -1 11331 1;
-#X obj 172 752 vsl 15 128 30 100 0 0 empty empty Volumn 0 -9 0 10 -262144
--1 -1 3595 1;
-#X obj 42 723 / 10;
-#X obj 40 573 *~;
-#X obj 149 538 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 177 608 fiddle~;
+#X obj 54 822 vsl 15 128 46 80 0 0 empty empty Pitch 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 122 822 vsl 15 128 30 100 0 0 empty empty Volumn 0 -9 0 10 -262144
+-1 -1 2883 1;
+#X obj 177 538 *~;
+#X obj 290 546 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X connect 0 0 35 0;
+#X obj 448 602 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 480 673 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 268 771 list;
+#X obj 207 805 print;
+#X msg 448 695 write test;
+#X obj 90 670 unpack;
+#X text 444 767 define a text object and write to the object with each
+bang;
+#X obj 448 643 metro;
+#X floatatom 495 602 5 0 0 0 - - -;
+#X text 540 602 frequency of file writing;
+#X text 255 526 audio on/off;
+#X obj 449 744 text define test_object;
+#X obj 269 823 text set test_object;
+#X connect 0 0 34 0;
 #X connect 2 0 1 0;
-#X connect 3 0 1 0;
 #X connect 3 0 7 0;
 #X connect 3 0 5 0;
 #X connect 4 0 2 0;
@@ -64,14 +78,24 @@
 #X connect 19 0 25 0;
 #X connect 25 0 24 0;
 #X connect 26 0 29 0;
-#X connect 27 0 34 0;
+#X connect 27 0 32 0;
 #X connect 28 0 33 0;
 #X connect 29 0 16 0;
 #X connect 29 0 3 0;
 #X connect 29 0 15 0;
 #X connect 30 0 29 1;
-#X connect 31 2 27 0;
+#X connect 31 2 41 0;
 #X connect 31 3 28 0;
-#X connect 34 0 32 0;
-#X connect 35 0 31 0;
-#X connect 36 0 35 1;
+#X connect 31 3 38 1;
+#X connect 34 0 31 0;
+#X connect 35 0 34 1;
+#X connect 36 0 43 0;
+#X connect 38 0 39 0;
+#X connect 38 0 48 0;
+#X connect 40 0 47 0;
+#X connect 41 0 27 0;
+#X connect 41 0 38 0;
+#X connect 43 0 37 0;
+#X connect 43 0 40 0;
+#X connect 44 0 43 1;
+#X coords 0 0 1 1 85 60 0;

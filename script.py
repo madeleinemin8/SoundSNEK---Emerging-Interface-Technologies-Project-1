@@ -9,7 +9,8 @@ MAX_VOL = 100
 MIN_VOL = 70
 
 def normalize(n, nmax, nmin):
-    if n>nmax or n<nmin: n=nmin
+    n = max(nmin, n)
+    n = min(nmax, n)
     return (n-nmin)/(nmax-nmin)
 
 
@@ -72,8 +73,8 @@ while True:
                 volume = normalize(line[1], MAX_VOL, MIN_VOL)
     mtime_last = mtime_cur
 
-    if pitch!=0 and pitch!=1:
-        new_dirs = int(pitch*4)
+    if volume!=0:
+        new_dirs = int(pitch*4)%4
         if new_dirs-2!=dirs and new_dirs+2!=dirs:
             dirs = new_dirs
     print(mtime_cur, pitch, volume, dirs)

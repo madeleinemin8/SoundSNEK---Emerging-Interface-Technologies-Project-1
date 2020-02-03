@@ -16,7 +16,7 @@ Speed
 Controlled by an audio slider.
 The slider goes
   from 50 px/second (activated by a sound of volume 70 dB)
-  to 150 px/second (activated by a sound of volume of 150 dB).
+  to 150 px/second (activated by a sound of volume of 100 dB).
 
 ----RULES----
 Typical snake rules.

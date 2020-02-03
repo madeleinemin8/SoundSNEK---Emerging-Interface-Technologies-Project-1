@@ -1,0 +1,24 @@
+How to Play SoundSNEK
+
+----GET STARTED----
+Download the script.py file
+Open terminal. Make sure you have Pygame and Python 3.
+Enter command: python script.py
+
+----CONTROLS----
+Direction
+To move left: make 50-55 Hz sound to mic (G1 sharp to A1 in musical notes)
+To move right: 55-60 Hz sound (A1 sharp to B1 flat)
+To move up: 60-65 Hz sound (B1 to C2 flat)
+To move down: 65-70 Hz sound (C2 to C2 sharp)
+
+Speed
+Controlled by an audio slider.
+The slider goes
+  from 50 px/second (activated by a sound of volume 70 dB)
+  to 150 px/second (activated by a sound of volume of 150 dB).
+
+----RULES----
+Typical snake rules.
+Collect apples to increase in size, and don't collide with a wall or yourself.
+Your high score is printed to the terminal at the end of the game.

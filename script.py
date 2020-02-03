@@ -15,7 +15,8 @@ def normalize(n, nmax, nmin):
 
 SNEK_SIZE = 5
 APPLE_SIZE = 10
-WINDOW_SIZE = 600
+WINDOW_SIZE = 1000
+SPEED = 10
 
 def collide(x1, x2, y1, y2, w1, w2, h1, h2):
     if x1 + w1 > x2 and x1 < x2 + w2 and y1 + h1 > y2 and y1 < y2 + h2:
@@ -60,7 +61,7 @@ mtime_last = 0
 
 while True:
 
-    clock.tick(10)
+    clock.tick(SPEED)
 
     mtime_cur = round(os.path.getmtime(PD_PORT_DIR), 3)
     if mtime_cur != mtime_last:
@@ -112,10 +113,11 @@ while True:
         xs[i] = xs[i-1]
         ys[i] = ys[i-1]
         i -= 1
-    if dirs == 0:ys[0] += SNEK_SIZE
-    elif dirs == 1:xs[0] += SNEK_SIZE
-    elif dirs == 2:ys[0] -= SNEK_SIZE
-    elif dirs == 3:xs[0] -= SNEK_SIZE
+    snek_step = int(SNEK_SIZE*(1+2*volume))
+    if dirs == 0:ys[0] += snek_step
+    elif dirs == 1:xs[0] += snek_step
+    elif dirs == 2:ys[0] -= snek_step
+    elif dirs == 3:xs[0] -= snek_step
 
     s.fill((255, 255, 255))
     for i in range(0, len(xs)): # render snek
@@ -123,7 +125,7 @@ while True:
 
     # render apple and score
     s.blit(appleimage, applepos)
-    t = f.render(str(dirs), True, (0, 0, 0))
+    t = f.render("Score: "+str(score), True, (0, 0, 0))
     s.blit(t, (10, 10))
 
     pygame.display.update()

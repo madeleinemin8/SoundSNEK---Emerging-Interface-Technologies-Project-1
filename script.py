@@ -2,9 +2,9 @@ import pygame
 import os, sys, math, time, random
 from pygame.locals import *
 
-PD_PORT_DIR = os.path.abspath('')+"/test"
-MAX_PITCH = 70
-MIN_PITCH = 50
+PD_PORT_DIR = os.path.abspath('')+"/file"
+MAX_PITCH = 65
+MIN_PITCH = 45
 MAX_VOL = 100
 MIN_VOL = 70
 
@@ -14,10 +14,10 @@ def normalize(n, nmax, nmin):
     return (n-nmin)/(nmax-nmin)
 
 
-SNEK_SIZE = 5
-APPLE_SIZE = 10
+SNEK_SIZE = 10
+APPLE_SIZE = 30
 WINDOW_SIZE = 1000
-SPEED = 10
+SPEED = 7
 
 def collide(x1, x2, y1, y2, w1, w2, h1, h2):
     if x1 + w1 > x2 and x1 < x2 + w2 and y1 + h1 > y2 and y1 < y2 + h2:
@@ -42,8 +42,8 @@ ys = [start_x - i * SNEK_SIZE for i in range(start_l)]
 
 dirs = 0  # 0:down  1:right  2:up  3:left
 score = 0
-applepos = (random.randint(0, WINDOW_SIZE - 10),
-            random.randint(0, WINDOW_SIZE - 10))
+applepos = (random.randint(0, WINDOW_SIZE - 50),
+            random.randint(0, WINDOW_SIZE - 50))
 
 pygame.init()
 s = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))  # window
@@ -98,7 +98,7 @@ while True:
         i -= 1
 
     # if snek eats apple
-    if collide(xs[0], applepos[0], ys[0], applepos[1], SNEK_SIZE, 10, SNEK_SIZE, 10):
+    if collide(xs[0], applepos[0], ys[0], applepos[1], SNEK_SIZE, APPLE_SIZE, SNEK_SIZE, APPLE_SIZE):
         score += 1
         xs.append(WINDOW_SIZE+100)
         ys.append(WINDOW_SIZE+100)
